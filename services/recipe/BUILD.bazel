@@ -1,38 +1,15 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 load("//build_defs/go_service:defs.bzl", "go_pandomium_service")
 
-go_library(
-    name = "recipe_service",
-    srcs = ["service.go"],
-    importpath = "github.com/shawntabai/pando/services/recipe",
-    visibility = ["//visibility:private"],
-    deps = [
-        "//proto/services/recipe:recipe_service_go_proto",
-        "@org_golang_google_grpc//:go_default_library",
-    ],
-)
-
-#go_binary(
-#    name = "recipe",
-#    embed = [":recipe_lib"],
-#    visibility = ["//visibility:public"],
-#)
-#
-#go_library(
-#    name = "recipe_lib",
-#    srcs = ["service.go"],
-#    importpath = "github.com/shawntabai/pando/services/recipe",
-#    visibility = ["//visibility:private"],
-#    deps = [
-#        "//proto/services/recipe:recipe_go_proto",
-#        "@org_golang_google_grpc//:go_default_library",
-#    ],
-#)
-
 go_pandomium_service(
   name = "recipe",
   full_service_name = "shawntabai.pando.service.recipe.RecipeService",
   contract = "//proto/services/recipe:recipe_service_proto",
   go_contract = "//proto/services/recipe:recipe_service_go_proto",
-  embed = [":recipe_service"],
+  srcs = ["service.go"],
+  deps = [
+      "//proto/services/recipe:recipe_service_go_proto",
+      "@org_golang_google_grpc//:go_default_library",
+  ],
+  importpath = "github.com/shawntabai/pando/services/recipe",
 )

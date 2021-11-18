@@ -63,7 +63,7 @@ def go_pandomium_service(name, full_service_name, contract, go_contract, service
     srcs = kwargs.pop("srcs", default = []) + [":" + gen_srcs_name],
     deps = kwargs.pop("deps", default = []),
     data = kwargs.pop("data", default = []),
-    embed = kwargs.pop("embed", default = []),
+    importpath = kwargs.pop("importpath"),
   )
   go_binary(
     name = name,
