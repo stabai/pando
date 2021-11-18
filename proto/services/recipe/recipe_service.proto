@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package shawntabai.pando.service.recipe;
+
+service RecipeService {
+  rpc GetRecipe(GetRecipeRequest) returns (GetRecipeResponse);
+  rpc CreateRecipe(CreateRecipeRequest) returns (CreateRecipeResponse);
+  rpc UpdateRecipe(UpdateRecipeRequest) returns (UpdateRecipeResponse);
+  rpc DeleteRecipe(DeleteRecipeRequest) returns (DeleteRecipeResponse);
+}
+
+message Recipe {
+  string id = 1;
+  string title = 2;
+  repeated string ingredients = 3;
+  repeated string steps = 4;
+}
+
+message GetRecipeRequest {
+  string recipe_id = 1;
+}
+message GetRecipeResponse {
+  Recipe recipe = 1;
+}
+
+message CreateRecipeRequest {
+  Recipe recipe = 1;
+}
+message CreateRecipeResponse {
+  Recipe recipe = 1;
+}
+
+message UpdateRecipeRequest {
+  Recipe recipe = 1;
+}
+message UpdateRecipeResponse {
+  Recipe recipe = 1;
+}
+
+message DeleteRecipeRequest {
+  string recipe_id = 1;
+}
+message DeleteRecipeResponse {
+  bool deleted = 1;
+}
