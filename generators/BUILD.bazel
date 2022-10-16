@@ -1,0 +1,31 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+#load("@build_bazel_rules_nodejs//packages/labs:index.bzl", "ts_proto_library")
+load("@npm//@bazel/labs:index.bzl", "ts_proto_library")
+load(":defs.bzl", "ts_service_gen")
+
+proto_library(
+    name = "descriptor_proto",
+    srcs = ["descriptor.proto"],
+)
+
+#ts_proto_library(
+#    name = "descriptor_ts_proto",
+#    proto = ":descriptor_proto",
+#)
+ts_proto_library(
+    name = "descriptor_ts_proto",
+    proto = ":descriptor_proto",
+)
+
+js_library(
+    name = "go_service",
+    srcs = ["go_service.ts"],
+    deps = [":descriptor_ts_proto"]
+)
+
+ts_service_gen(
+  name = "recipe_service",
+  proto_name = "shawntabai.pando.service.recipe.RecipeService",
+  proto = "//proto/services/recipe:recipe_service_proto",
+  ts_proto = "//proto/services/recipe:recipe_service_ts_proto",
+)

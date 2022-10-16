@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "github_com_shawntabai_pando/*": [
+        "*", // Enables absolute paths for src files in your project
+        "bazel-bin/*" // Enables referencing generate protos with absolute paths
+      ]
+    }
+  }
+}

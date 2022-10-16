@@ -1,5 +1,7 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
+exports_files(["tsconfig.json", "package.json", "yarn.lock"])
+
 # gazelle:prefix github.com/shawntabai/pando
 # gazelle:proto package
 gazelle(name = "gazelle")
